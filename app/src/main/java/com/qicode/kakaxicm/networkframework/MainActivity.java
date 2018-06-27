@@ -6,8 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.qicode.kakaxicm.networkframework.network.RequestMethod;
 import com.qicode.kakaxicm.networkframework.network.Volley;
 import com.qicode.kakaxicm.networkframework.network.interfaces.IDataListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     String url = "http://wenwan.cacang.com/wenwan/index/xxxxx";
@@ -19,15 +23,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        User user = new User();
-        user.setName("13343491234");
-        user.setPassword("123456");
-//        for (int i = 0; i < 50; i++) {
-            Volley.sendRequest(user, url, UserResponse.class, new IDataListener<UserResponse>() {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", "13343491234");
+        params.put("password", "123456");
+        for (int i = 0; i < 50; i++) {
+            Volley.sendRequest(url, RequestMethod.POST,params, UserResponse.class, new IDataListener<UserResponse>() {
                 @Override
                 public void onSuccess(UserResponse loginResponse) {
-//                    Toast.makeText(MainActivity.this, loginResponse.toString(), Toast.LENGTH_LONG).show();
-                    Log.e("NetWork-Response", loginResponse.toString());
+                    Log.e("NetWorkResponse", loginResponse.toString());
                 }
 
                 @Override
@@ -35,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("NetWork", message);
                 }
             });
-//        }
-
+        }
 
     }
 }

@@ -1,5 +1,9 @@
 package com.qicode.kakaxicm.networkframework.network.interfaces;
 
+import com.qicode.kakaxicm.networkframework.network.RequestMethod;
+
+import java.util.Map;
+
 /**
  * Created by chenming on 2018/6/27
  * 顶层的业务描述
@@ -10,9 +14,15 @@ public interface IHttpService {
 
     /**
      * 设置请求参数
-     * @param requestData
+     * @param params
      */
-    void setRequestData(byte[] requestData);
+    void setParams(Map<String, Object> params);
+
+    /**
+     * 设置请求方式
+     * @param method
+     */
+    void setRequestMathod(RequestMethod method);
 
     /**
      * 设置结果监听

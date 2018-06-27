@@ -3,12 +3,14 @@ package com.qicode.kakaxicm.networkframework.network;
 import com.qicode.kakaxicm.networkframework.network.interfaces.IHttpListener;
 import com.qicode.kakaxicm.networkframework.network.interfaces.IHttpService;
 
+import java.util.Map;
+
 /**
  * Created by chenming on 2018/6/27
  * 请求信息和回调封装
  * T为请求
  */
-public class RequestHolder<T> {
+public class RequestHolder {
     /**
      * 执行下载
      */
@@ -19,14 +21,16 @@ public class RequestHolder<T> {
     private IHttpListener httpListener;
 
     /**
-     * 请求参数对应的实体
-     */
-    private T requestInfo;
-
-    /**
      * 请求url
      */
     String url;
+
+    /**
+     * 请求参数参数
+     */
+    private Map<String, Object> params;
+
+    private RequestMethod method;
 
     public IHttpService getHttpService() {
         return httpService;
@@ -44,12 +48,12 @@ public class RequestHolder<T> {
         this.httpListener = httpListener;
     }
 
-    public T getRequestInfo() {
-        return requestInfo;
+    public Map<String, Object> getRequestParams() {
+        return params;
     }
 
-    public void setRequestInfo(T requestInfo) {
-        this.requestInfo = requestInfo;
+    public void setRequestParams(Map<String, Object> params) {
+        this.params = params;
     }
 
     public String getUrl() {
@@ -59,4 +63,13 @@ public class RequestHolder<T> {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public void setMethod(RequestMethod method) {
+        this.method = method;
+    }
+
+    public RequestMethod getMethod() {
+        return method;
+    }
+
 }

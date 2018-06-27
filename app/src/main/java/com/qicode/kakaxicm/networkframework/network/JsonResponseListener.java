@@ -7,8 +7,6 @@ import com.alibaba.fastjson.JSON;
 import com.qicode.kakaxicm.networkframework.network.interfaces.IDataListener;
 import com.qicode.kakaxicm.networkframework.network.interfaces.IHttpListener;
 
-import org.apache.http.HttpEntity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,27 +30,21 @@ public class JsonResponseListener<M> implements IHttpListener {
     }
 
     @Override
-    public void onSuccess(HttpEntity entity) {
-        InputStream inputStream = null;
+    public void onSuccess(InputStream inputStream) {
         //获取输入流
-        try {
-            inputStream = entity.getContent();
-            String jsonStr = getContent(inputStream);
-            final M m = JSON.parseObject(jsonStr, responseClazz);
-            if (m != null) {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (dataListener != null) {
-                            dataListener.onSuccess(m);
-                        }
+        String jsonStr = getContent(inputStream);
+        final M m = JSON.parseObject(jsonStr, responseClazz);
+        if (m != null) {
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (dataListener != null) {
+                        dataListener.onSuccess(m);
                     }
-                });
-            }else{
-                onFail(-1, "JSON解析异常");
-            }
-        } catch (IOException e) {
-            onFail(-1, e.getLocalizedMessage());
+                }
+            });
+        } else {
+            onFail(-1, "JSON解析异常");
         }
     }
 
