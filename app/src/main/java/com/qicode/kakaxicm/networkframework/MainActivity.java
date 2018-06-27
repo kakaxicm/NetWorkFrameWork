@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         User user = new User();
         user.setName("13343491234");
         user.setPassword("123456");
-        for (int i = 0; i < 50; i++) {
+//        for (int i = 0; i < 50; i++) {
             Volley.sendRequest(user, url, UserResponse.class, new IDataListener<UserResponse>() {
                 @Override
                 public void onSuccess(UserResponse loginResponse) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("NetWork", message);
                 }
             });
-        }
+//        }
 
 
     }

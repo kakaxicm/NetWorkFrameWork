@@ -40,18 +40,37 @@ public class UserResponse {
     }
 
     public static class DataBean {
-        /**
-         * name : a
-         */
+        //        /**
+//         * name : a
+//         */
+//
+//        private String a;
+//
+//        public String getA() {
+//            return a;
+//        }
+//
+//        public void setA(String name) {
+//            this.a = name;
+//        }
+        private String name;
 
-        private String a;
+        private String password;
 
-        public String getA() {
-            return a;
+        public String getName() {
+            return name;
         }
 
-        public void setA(String name) {
-            this.a = name;
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
         }
 
     }
