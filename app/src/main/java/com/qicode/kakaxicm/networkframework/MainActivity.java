@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.qicode.kakaxicm.networkframework.network.RequestMethod;
 import com.qicode.kakaxicm.networkframework.network.Volley;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         params.put("name", "13343491234");
         params.put("password", "123456");
         for (int i = 0; i < 50; i++) {
-            Volley.sendRequest(url, RequestMethod.POST,params, UserResponse.class, new IDataListener<UserResponse>() {
+            Volley.sendRequestForJson(url, RequestMethod.POST,params, UserResponse.class, new IDataListener<UserResponse>() {
                 @Override
                 public void onSuccess(UserResponse loginResponse) {
                     Log.e("NetWorkResponse", loginResponse.toString());

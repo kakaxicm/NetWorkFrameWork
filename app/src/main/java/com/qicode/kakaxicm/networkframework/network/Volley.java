@@ -11,7 +11,16 @@ import java.util.concurrent.FutureTask;
  * Created by chenming on 2018/6/27
  */
 public class Volley {
-    public static <M> void sendRequest(String url, RequestMethod method, Map<String, Object> params, Class<M> responseClazz, IDataListener<M> listener) {
+    /**
+     * 返回json的网络请求
+     * @param url
+     * @param method
+     * @param params
+     * @param responseClazz
+     * @param listener
+     * @param <M>
+     */
+    public static <M> void sendRequestForJson(String url, RequestMethod method, Map<String, Object> params, Class<M> responseClazz, IDataListener<M> listener) {
         RequestHolder holder = new RequestHolder();
         holder.setUrl(url);//配置url
         holder.setMethod(method);
